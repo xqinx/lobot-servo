@@ -13,6 +13,9 @@ servo is provided in the
 ```bash
 cmake -S . -B build
 cmake --build build
+
+# build examples
+cmake --build build/examples
 ```
 
 ---

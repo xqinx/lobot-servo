@@ -42,18 +42,5 @@ install(
   RUNTIME DESTINATION bin
 )
 
-if(UNIX)
-# Utils
-add_executable(lobot_util utils/lobot_util.c)
-target_link_libraries(lobot_util PUBLIC lobot_servo)
-target_include_directories(lobot_util PUBLIC
-     "${PROJECT_BINARY_DIR}"
-     )
-endif()
-
-# Examples
-add_executable(simple examples/simple.c)
-target_link_libraries(simple PUBLIC lobot_servo)
-target_include_directories(simple PUBLIC
-    "${PROJECT_BINARY_DIR}"
-    )
+add_subdirectory(utils)
+add_subdirectory(examples EXCLUDE_FROM_ALL)
