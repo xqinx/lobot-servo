@@ -18,13 +18,16 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+# find dependencies
+find_package(ament_cmake REQUIRED)
+
 # Source
 set(lobot_SOURCE src/servo.c)
 if(UNIX)
     set(lobot_SOURCE ${lobot_SOURCE} src/port_linux.c)
 endif()
 
-add_library(lobot_servo
+add_library(lobot_servo SHARED
     ${lobot_SOURCE}
     )
 target_include_directories(lobot_servo PUBLIC
@@ -41,6 +44,18 @@ install(
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
+
+ament_export_include_directories(
+  include
+)
+ament_export_libraries(
+  ${PROJECT_NAME}
+)
+ament_export_targets(
+  export_${PROJECT_NAME}
+)
+
+ament_package()
 
 add_subdirectory(utils)
 add_subdirectory(examples EXCLUDE_FROM_ALL)
