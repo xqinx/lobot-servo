@@ -77,7 +77,7 @@ static void more_help(void)
     int num = ARRAY_SIZE(command_table);
 
     fprintf(stdout,
-            "\nCommand:\n"
+            "\nCOMMAND:\n"
            );
     for (int i = 0; i < num; ++i) {
         fprintf(stdout,
@@ -125,7 +125,7 @@ static void usage(const char* name, const char* fmt, ...)
         va_end(args);
     }
     fprintf(stdout,
-            "Usage: %s Command [-i id] [-w VAL1[,VAL2] [-d port] [-h] [-v]\n"
+            "Usage: %s COMMAND [-i id] [-w VAL1[,VAL2] [-d port] [-h] [-v]\n"
             ,name);
 }
 
@@ -352,18 +352,6 @@ int main(int argc, char* argv[])
     }
 
     command_table[index].func(port, &args);
-    /*
-    int t = 0;
-    int delta = 1;
-    while(1) {
-        t += delta;
-        if(t >= 1000 || t < 0) delta = -delta;
-        printf("pos:%d\n", t);
-        lobot_set_pos(1, t, 0, port);
-        usleep(800);
-    }
-    */
-
 out:
     lobot_port_close(port);
     exit(ret);

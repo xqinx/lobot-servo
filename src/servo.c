@@ -161,7 +161,7 @@ lobot_error_t lobot_set_pos(struct lobot_port_t *port, uint8_t id, uint16_t posi
         position = LOBOT_ANGLE_RAW_MAX;
     }
     if(time > LOBOT_MOVETIME_MS_MAX) {
-        position = LOBOT_MOVETIME_MS_MAX;
+        time = LOBOT_MOVETIME_MS_MAX;
     }
 
     lobot_packet_4(id, LOBOT_CMD_MOVE_TIME_WRITE, position, time, buffer);
