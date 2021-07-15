@@ -25,11 +25,32 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
 
+/* struct representing a serial port */
 struct lobot_port_t;
 
+/* open a serial port
+ * @param dev Device path for the serial port
+ * @return struct lobot_port_t *
+ */
 struct lobot_port_t* lobot_port_open(const char* dev);
+
+/* read data from serial port to buffer
+ * @param port Port returned by calling lobot_port_open
+ * @param buffer Buffer to read
+ * @param len Length to read
+ */
 int lobot_port_read(struct lobot_port_t* port, uint8_t* buffer, size_t len);
+
+/* write data to serial port
+ * @param port Port returned by calling lobot_port_open
+ * @param buffer Buffer containing data to write
+ * @param len Length to write
+ */
 int lobot_port_write(struct lobot_port_t* port, uint8_t* buffer, size_t len);
+
+/* close an opened serial port
+ * @param port Port to close
+ */
 void lobot_port_close(struct lobot_port_t* port);
 
 #ifdef __cplusplus
